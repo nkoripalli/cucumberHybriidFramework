@@ -38,12 +38,22 @@ public class RegisterPage {
 	
 	@FindBy(name="agree")
 	private WebElement privacyPolicy;
-
+	
+	@FindBy(xpath="//input[@name='newsletter' and @value='1']")
+	private WebElement newsLetter;
+	
 	@FindBy(id="//input[@type='submit']")
 	private WebElement continueButton;
 	
 	@FindBy(xpath="//div[@id='content']/h1")
 	private WebElement accountSuccessMessage;
+
+	
+	@FindBy(xpath="//input[@id='input-firstname']/following-sibling::div")
+	private WebElement firstNameWarning;
+
+	@FindBy(xpath="//input[@id='input-lastname']/following-sibling::div")
+	private WebElement lastNameWarning;
 	
 	public void enterFirstName(String firstNameText) {
 		firstnameField.sendKeys(firstNameText);
@@ -72,9 +82,12 @@ public class RegisterPage {
 
 	public void selectPrivacyPolicy() {
 		elmenetUtils.clickOnElement(privacyPolicy, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
-		//privacyPolicy.click();
+//		privacyPolicy.click();
 	}
 
+	public void SelectNewsLetter() {
+		elmenetUtils.clickOnElement(newsLetter, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+	}
 	public void clickOnContinueButton() {
 		//continueButton.click();
 		elmenetUtils.clickOnElement(continueButton, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
@@ -82,6 +95,15 @@ public class RegisterPage {
 	}	
 
 	public String checkAccountSuccessMessage() {
-		return accountSuccessMessage.getText();
+		return elmenetUtils.getTextFromatELement(accountSuccessMessage, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+	}	
+	
+	public String getFirstNameWarning() {
+		firstNameWarning.getText();
+		return elmenetUtils.getTextFromatELement(firstNameWarning, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+	}	
+	
+	public String getLastNameWarning() {
+		return elmenetUtils.getTextFromatELement(lastNameWarning, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
 	}	
 }

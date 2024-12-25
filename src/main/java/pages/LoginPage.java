@@ -32,7 +32,9 @@ public class LoginPage {
 	private WebElement warningMessgae;
 	
 	public void enterEmailAddress(String emailText) {
-		//emailField.sendKeys(emailText);
+//		emailField.sendKeys(emailText);
+//		emailField.clear();
+//		emailField.sendKeys(emailText);
 		elementUtils.typeText(emailField, emailText, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
 	}	
 

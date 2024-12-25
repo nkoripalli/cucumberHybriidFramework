@@ -15,18 +15,16 @@ import utils.CommonUtils;
 
 public class Login {
 	WebDriver driver;
-//	private HomePage homePage;
-//	private LoginPage loginPage;
-//	private AccountPage accountPage;
-	HomePage homePage = new HomePage(driver);
-	LoginPage loginPage = new LoginPage(driver);
-	AccountPage accountPage = new AccountPage(driver);
+	//private HomePage homePage;
+	private LoginPage loginPage;
+	private AccountPage accountPage;
 	private CommonUtils CommonUtils;
 	//may result in error - driverfactor object please check
 	
 	@Given("^User navigates to login page$")
 	public void User_navigates_to_login_page() {
 		driver = DriverFactory.getDriver();
+		HomePage homePage = new HomePage(driver);
 		homePage.clickOnMyAccount();
 		loginPage = homePage.selectLoginOption();
 	}
@@ -43,6 +41,7 @@ public class Login {
 
 	@And("^Clicks on Login button$")
 	public void Clicks_on_Login_button() {
+		//AccountPage accountPage = new AccountPage(driver);
 		accountPage = loginPage.clickOnloginButton();
 	}
 

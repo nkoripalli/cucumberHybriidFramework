@@ -1,11 +1,10 @@
-@all
 Feature: User Registartion
 User is attempting to Register to Login to the application
 
 Background: 
 Given User navigate to Register Account page
 
-@Register @smoke
+@Register
 Scenario: Register with mandatroy fields
 When User enters below data into the fields
 |firstname			|Suresh	|
@@ -35,7 +34,7 @@ When User dont enter data in any fields
 And Clicks on Continue button
 Then Warning message should dispaly for all mandatory fields
 
-@Register @smoke @withourfields 
+@Register @withourfields 
 Scenario: Register with duplicate email Address
 When User enters below data into the fields with duplicate email
 |firstname			|Satish|

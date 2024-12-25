@@ -15,8 +15,6 @@ public class DriverFactory {
 	public static WebDriver intializeBrowser(String browserName) {
 		if(browserName.equalsIgnoreCase("chrome")) {
 			driver = new ChromeDriver();
-			//System.setProperty("webdriver.chrome.driver", "C:\\Users\\naveenbabu.koripalli\\Desktop\\AgencyPortal_5x_Selenium_XML\\TutorialsNinjaProj\\driver\\chromedriver-win64\\chromedriver.exe");
-
 		}else if (browserName.equalsIgnoreCase("firefox")) {
 			driver = new FirefoxDriver();
 		}

@@ -18,6 +18,17 @@ public class ElementUtils {
 		this.driver=driver;
 	}
 
+	public WebElement waitForElement(WebElement element, long durationInSeconds) {
+		WebElement webElement = null;
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(durationInSeconds));
+			webElement = wait.until(ExpectedConditions.elementToBeClickable(element));
+		}catch(Throwable e) {
+			e.printStackTrace();
+		}
+		return webElement;
+	}
+
 	public void clickOnElement(WebElement element, long durationInSeconds) {
 
 		WebElement webElement = waitForElement(element,durationInSeconds);
@@ -30,17 +41,6 @@ public class ElementUtils {
 		webElement.click();
 		webElement.clear();
 		webElement.sendKeys(textToBeTyped);
-	}
-
-	public WebElement waitForElement(WebElement element, long durationInSeconds) {
-		WebElement webElement = null;
-		try {
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(durationInSeconds));
-			webElement = wait.until(ExpectedConditions.elementToBeClickable(element));
-		}catch(Throwable e) {
-			e.printStackTrace();
-		}
-		return webElement;
 	}
 
 	public void selectOptionInDropDown(WebElement element, String dropDownOption, long durationInSeconds) {
@@ -112,9 +112,9 @@ public class ElementUtils {
 	public boolean displayStatusOfElement(WebElement element, long durationInSeconds) {
 		try {
 			WebElement webElement = visibilityOFElement(element, durationInSeconds);
-//			webElement.isDisplayed();	
+			return webElement.isDisplayed();	
 		}catch(Throwable e) {
-			return false;
+			e.printStackTrace();
 		}
 		return false;
 	}	

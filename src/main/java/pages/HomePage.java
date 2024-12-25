@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import utils.CommonUtils;
 import utils.ElementUtils;
 
 public class HomePage {
@@ -28,17 +30,17 @@ public class HomePage {
 
 	public void clickOnMyAccount() {
 		//myAccountDrodown.click();
-		elementUtils.clickOnElement(myAccountDrodown, 30);
+		elementUtils.clickOnElement(myAccountDrodown, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
 	}
 	
 	public LoginPage selectLoginOption() {
-		elementUtils.clickOnElement(login, 30);
+		elementUtils.clickOnElement(login, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
 		//login.click();
 		return new LoginPage(driver);
 	}	
-	public void selectRegisterOption() {
-		elementUtils.clickOnElement(register, 30);
-		//register.click();
+	public RegisterPage selectRegisterOption() {
+		elementUtils.clickOnElement(register, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+		return new RegisterPage(driver);
 	}
 	
 }

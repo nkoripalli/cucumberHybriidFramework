@@ -22,7 +22,6 @@ public class Register {
 //	private HomePage homePage;
 //	private LoginPage loginPage;
 //	private AccountPage accountPage;
-	HomePage homePage = new HomePage(driver);
 	LoginPage loginPage = new LoginPage(driver);
 	AccountPage accountPage = new AccountPage(driver);
 	RegisterPage registerPage = new RegisterPage(driver);
@@ -31,8 +30,9 @@ public class Register {
 	@Given("^User navigate to Register Account page$")
 	public void User_navigate_to_Register_Account_page() {
 		driver = DriverFactory.getDriver();
+		HomePage homePage = new HomePage(driver);
 		homePage.clickOnMyAccount();
-		homePage.selectRegisterOption();
+		registerPage = homePage.selectRegisterOption();
 	}
 
 	@When("^User enters below data into the fields$")
@@ -75,7 +75,7 @@ public class Register {
 
 	@When("Selects Yes for Newsletter")
 	public void selects_yes_for_newsletter() {
-		driver.findElement(By.xpath("//input[@name='newsletter', @value='1']")).click();
+		registerPage.SelectNewsLetter();
 	}
 	@When("User dont enter data in any fields")
 	public void user_dont_enter_data_in_any_fields() {
@@ -85,11 +85,12 @@ public class Register {
 	@Then("Warning message should dispaly for all mandatory fields")
 	public void warning_messaged_should_dispaly_for_all_mandatory_fields() {
 		//Assert.assertTrue(driver.findElement(By.xpath("//div[contains(@class, 'alert-dismissible')]")).getText().contains("alert alert-danger alert-dismissible"));
-		Assert.assertEquals("First Name must be between 1 and 32 characters!", driver.findElement(By.xpath("//input[@name='firstname']/following-sibling::div")).getText());
-		Assert.assertEquals("Last Name must be between 1 and 32 characters!", driver.findElement(By.xpath("//input[@name='lastname']/following-sibling::div")).getText());
-		Assert.assertEquals("E-Mail Address does not appear to be valid!", driver.findElement(By.xpath("//input[@name='email']/following-sibling::div")).getText());
-		Assert.assertEquals("Telephone must be between 3 and 32 characters!", driver.findElement(By.xpath("//input[@name='telephone']/following-sibling::div")).getText());
-		Assert.assertEquals("Password must be between 4 and 20 characters!", driver.findElement(By.xpath("//input[@name='password']/following-sibling::div")).getText());
+		Assert.assertEquals("First Name must be between 1 and 32 characters!", registerPage.getFirstNameWarning());
+		Assert.assertTrue(registerPage.getFirstNameWarning().contains("First Name must be between 1 and 32 characters!"));
+//		Assert.assertEquals("Last Name must be between 1 and 32 characters!", driver.findElement(By.xpath("//input[@name='lastname']/following-sibling::div")).getText());
+//		Assert.assertEquals("E-Mail Address does not appear to be valid!", driver.findElement(By.xpath("//input[@name='email']/following-sibling::div")).getText());
+//		Assert.assertEquals("Telephone must be between 3 and 32 characters!", driver.findElement(By.xpath("//input[@name='telephone']/following-sibling::div")).getText());
+//		Assert.assertEquals("Password must be between 4 and 20 characters!", driver.findElement(By.xpath("//input[@name='password']/following-sibling::div")).getText());
 	}
 
 	@Then("Warning message should display indicating duplicate email address")

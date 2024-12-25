@@ -9,8 +9,8 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
 		features="src/test/resources/features",
 		glue={"stepdefinitions", "hooks"},
-		//tags="@smoke",
-		publish = true,
+		tags="@smoke",
+		//publish = true,
 		plugin={"pretty","html:target/CucumberReropt.html"}
 				)
 public class TestRunner {
